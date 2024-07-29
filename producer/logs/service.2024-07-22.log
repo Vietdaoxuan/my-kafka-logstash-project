@@ -1,0 +1,20 @@
+2024-07-22 17:11:09 INFO  o.a.k.c.c.i.ConsumerRebalanceListenerInvoker - [Consumer clientId=consumer-ack-group-1, groupId=ack-group] Revoke previously assigned partitions acknowledgments-0
+2024-07-22 17:11:10 INFO  o.s.k.l.KafkaMessageListenerContainer - ack-group: partitions revoked: [acknowledgments-0]
+2024-07-22 17:11:10 INFO  o.a.k.c.c.i.ConsumerCoordinator - [Consumer clientId=consumer-ack-group-1, groupId=ack-group] Member consumer-ack-group-1-bbc19014-cb18-4abf-96e8-077df7f2ebc8 sending LeaveGroup request to coordinator localhost:9092 (id: 2147483646 rack: null) due to the consumer unsubscribed from all topics
+2024-07-22 17:11:10 INFO  o.a.k.c.c.i.ConsumerCoordinator - [Consumer clientId=consumer-ack-group-1, groupId=ack-group] Resetting generation and member id due to: consumer pro-actively leaving the group
+2024-07-22 17:11:10 INFO  o.a.k.c.c.i.ConsumerCoordinator - [Consumer clientId=consumer-ack-group-1, groupId=ack-group] Request joining group due to: consumer pro-actively leaving the group
+2024-07-22 17:11:10 INFO  o.a.k.c.c.i.LegacyKafkaConsumer - [Consumer clientId=consumer-ack-group-1, groupId=ack-group] Unsubscribed all topics or patterns and assigned partitions
+2024-07-22 17:11:10 INFO  o.a.k.c.c.i.ConsumerCoordinator - [Consumer clientId=consumer-ack-group-1, groupId=ack-group] Resetting generation and member id due to: consumer pro-actively leaving the group
+2024-07-22 17:11:10 INFO  o.a.k.c.c.i.ConsumerCoordinator - [Consumer clientId=consumer-ack-group-1, groupId=ack-group] Request joining group due to: consumer pro-actively leaving the group
+2024-07-22 17:11:11 INFO  o.a.kafka.common.metrics.Metrics - Metrics scheduler closed
+2024-07-22 17:11:11 INFO  o.a.kafka.common.metrics.Metrics - Closing reporter org.apache.kafka.common.metrics.JmxReporter
+2024-07-22 17:11:11 INFO  o.a.kafka.common.metrics.Metrics - Closing reporter org.apache.kafka.common.telemetry.internals.ClientTelemetryReporter
+2024-07-22 17:11:11 INFO  o.a.kafka.common.metrics.Metrics - Metrics reporters closed
+2024-07-22 17:11:12 INFO  o.a.kafka.common.utils.AppInfoParser - App info kafka.consumer for consumer-ack-group-1 unregistered
+2024-07-22 17:11:12 INFO  o.s.k.l.KafkaMessageListenerContainer - ack-group: Consumer stopped
+2024-07-22 17:11:12 INFO  o.a.k.clients.producer.KafkaProducer - [Producer clientId=Producer-producer-1] Closing the Kafka producer with timeoutMillis = 30000 ms.
+2024-07-22 17:11:12 INFO  o.a.kafka.common.metrics.Metrics - Metrics scheduler closed
+2024-07-22 17:11:12 INFO  o.a.kafka.common.metrics.Metrics - Closing reporter org.apache.kafka.common.metrics.JmxReporter
+2024-07-22 17:11:12 INFO  o.a.kafka.common.metrics.Metrics - Closing reporter org.apache.kafka.common.telemetry.internals.ClientTelemetryReporter
+2024-07-22 17:11:12 INFO  o.a.kafka.common.metrics.Metrics - Metrics reporters closed
+2024-07-22 17:11:12 INFO  o.a.kafka.common.utils.AppInfoParser - App info kafka.producer for Producer-producer-1 unregistered
