@@ -69,7 +69,7 @@ docker compose up -d
 telnet localhost 9092
 ```
 
-- Kiểm tra thông cổng localhost port 9200 cho elastic search
+- Kiểm tra thông cổng localhost port 9200 cho Elasticsearch
 
 ```bash
 telnet localhost 9200
