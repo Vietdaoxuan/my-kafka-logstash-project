@@ -45,3 +45,121 @@ Kibana là một công cụ trực quan hóa dữ liệu cho Elasticsearch, cung
 
 ### 5. Logstash
 Logstash là một công cụ thu thập, xử lý và gửi log. Trong dự án này, Logstash được cài đặt trên máy host để thu thập log từ Kafka và gửi chúng đến Elasticsearch.
+
+### 6. Cài đặt
+Logstash là một công cụ thu thập, xử lý và gửi log. Trong dự án này, Logstash được cài đặt trên máy host để thu thập log từ Kafka và gửi chúng đến Elasticsearch.
+
+#### 1. Tạo Zookeeper, Kafka, Elasticsearch, Kibana qua Docker Compose
+
+- Mở CMD trỏ đến thư mục 
+
+```bash
+cd .\my-kafka-logstash-project\docker\docker-compose.yml
+```
+
+- Chạy lệnh
+
+```bash
+docker compose up -d
+```
+
+- Kiểm tra thông cổng localhost port 9092 cho kafka server
+
+```bash
+telnet localhost 9092
+```
+
+- Kiểm tra thông cổng localhost port 9200 cho elastic search
+
+```bash
+telnet localhost 9200
+```
+
+- Kiểm tra localhost:5601 trên browser
+
+#### 2. Khởi chạy logstash
+
+- Tải Logstash từ trang chủ	Elastic: [Logstash Download](https://www.elastic.co/downloads/logstash)
+
+- Giải nén tệp tải về vào một thư mục trên máy tính
+
+- Tạo tệp cấu hình Logstash
+
+```config
+input {
+  kafka {
+    bootstrap_servers => "localhost:9092"
+    topics => ["my-topic"]
+    group_id => "logstash-group"
+    codec => "json"
+  }
+}
+
+output {
+  elasticsearch {
+    hosts => ["http://localhost:9200"]
+    index => "logs-%{+YYYY.MM.dd}"
+	template => "G:\logstash-8.14.3\template\ecs-logstash-template.json"
+    template_name => "ecs-logstash"
+    template_overwrite => true
+  }
+  stdout {
+    codec => rubydebug
+  }
+}
+```
+
+- Tạo template
+
+```config
+{
+  "index_patterns": ["logs-*"],
+  "settings": {
+    "number_of_shards": 1,
+    "number_of_replicas": 1
+  },
+  "mappings": {
+    "_source": {
+      "enabled": true
+    },
+    "properties": {
+      "@timestamp": {
+        "type": "date"
+      },
+      "message": {
+        "type": "text"
+      },
+      "host": {
+        "properties": {
+          "name": {
+            "type": "keyword"
+          }
+        }
+      },
+      "log": {
+        "properties": {
+          "level": {
+            "type": "keyword"
+          },
+          "logger": {
+            "type": "keyword"
+          }
+        }
+      }
+    }
+  }
+}
+```
+
+- Cài template vào Elasticsearch
+
+```bash
+curl -X PUT "http://localhost:9200/_template/ecs-logstash" -H "Content-Type: application/json" -d @path\to\your\ecs-logstash-template.json
+```
+
+- Trỏ đến thư mục bin bên trong thư mục được giải nén ở trên, chạy logstash
+ 
+```bash
+logstash -f C:\logstash\config\logstash.conf
+```
+
