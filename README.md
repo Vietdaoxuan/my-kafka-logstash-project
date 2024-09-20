@@ -77,6 +77,10 @@ telnet localhost 9200
 
 - Kiểm tra localhost:5601 trên browser
 
+##### Chạy kafka trên Windows:
+
+- Làm theo hướng dẫn tại [Link](https://www.geeksforgeeks.org/how-to-install-and-run-apache-kafka-on-windows/)
+ 
 #### 2. Khởi chạy logstash
 
 - Tải Logstash từ trang chủ	Elastic: [Logstash Download](https://www.elastic.co/downloads/logstash)
@@ -163,3 +167,4 @@ curl -X PUT "http://localhost:9200/_template/ecs-logstash" -H "Content-Type: app
 logstash -f C:\logstash\config\logstash.conf
 ```
 
+#### 2. Chạy Producer & consumer
