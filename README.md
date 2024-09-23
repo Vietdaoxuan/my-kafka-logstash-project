@@ -167,4 +167,18 @@ curl -X PUT "http://localhost:9200/_template/ecs-logstash" -H "Content-Type: app
 logstash -f C:\logstash\config\logstash.conf
 ```
 
-#### 2. Chạy Producer & consumer
+#### 3. Chạy Producer & consumer
+
+- Build Producer: Trỏ đến thư mục Producer chạy lệnh
+
+```bash
+mvn clean package
+```
+
+- Build Consumer: Trỏ đến thư mục Consumer chạy lệnh
+
+```bash
+mvn clean package
+```
+
+### 7. Unit Tests
