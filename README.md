@@ -31,22 +31,22 @@ my-kafka-logstash-project/
 
 ## Các Thành Phần Chính
 
-### 1. Zookeeper
+### I. Zookeeper
 Zookeeper quản lý thông tin cấu hình và cung cấp dịch vụ đồng bộ cho các node trong hệ thống phân tán. Trong dự án này, Zookeeper được sử dụng để quản lý Kafka broker.
 
-### 2. Kafka
+### II. Kafka
 Kafka là một hệ thống messaging phân tán. Nó cho phép publish và subscribe các luồng record, lưu trữ các record một cách tin cậy và xử lý các luồng record. Trong dự án này, Kafka được sử dụng để nhận log từ Producer và cung cấp cho Consumer và Logstash.
 
-### 3. Elasticsearch
+### III. Elasticsearch
 Elasticsearch là một công cụ tìm kiếm và phân tích mạnh mẽ, cho phép lưu trữ, tìm kiếm và phân tích khối lượng lớn dữ liệu một cách nhanh chóng. Trong dự án này, Elasticsearch được sử dụng để lưu trữ và tìm kiếm các log được gửi từ Logstash.
 
-### 4. Kibana
+### IV. Kibana
 Kibana là một công cụ trực quan hóa dữ liệu cho Elasticsearch, cung cấp giao diện để tìm kiếm và xem dữ liệu được lưu trữ trong Elasticsearch. Trong dự án này, Kibana được sử dụng để trực quan hóa các log được lưu trữ trong Elasticsearch.
 
-### 5. Logstash
+### V. Logstash
 Logstash là một công cụ thu thập, xử lý và gửi log. Trong dự án này, Logstash được cài đặt trên máy host để thu thập log từ Kafka và gửi chúng đến Elasticsearch.
 
-### 6. Cài đặt
+### VI. Cài đặt
 Logstash là một công cụ thu thập, xử lý và gửi log. Trong dự án này, Logstash được cài đặt trên máy host để thu thập log từ Kafka và gửi chúng đến Elasticsearch.
 
 #### 1. Tạo Zookeeper, Kafka, Elasticsearch, Kibana qua Docker Compose
@@ -181,4 +181,43 @@ mvn clean package
 mvn clean package
 ```
 
-### 7. Unit Tests
+### VII. Unit Tests
+
+#### 1. Tạo mới Kafka topic
+- Tạo mới Topic my-topic
+
+#### 2. Gửi API
+- Sử dụng Postman, gửi bản tin theo Url
+
+```bash
+http://localhost:8080/sendOrder
+```
+
+- Cấu trúc bản tin
+
+```bash
+{
+    "orderId": "2",
+    "customerName": "Vietdx",
+    "product": "Code",
+    "quantity": 1
+}
+```
+
+- Response trả ra 
+"Message sent to Kafka topic: "
+
+- Kiểm tra phía Consumer, Console trả ra: 
+
+```bash
+"Received message: 
+{
+    "orderId": "2",
+    "customerName": "Vietdx",
+    "product": "Code",
+    "quantity": 1
+}"
+```
+
+- Kiểm tra logstash: 
++ Tại ô search nhập Discover --> Chọn Log-* --> Truy vấn theo trường tương ứng
